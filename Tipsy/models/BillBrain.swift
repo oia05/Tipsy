@@ -1,31 +1,41 @@
 //
-//  BillBrain.swift
+//  TipBrain.swift
 //  Tipsy
 //
-//  Created by OmarAssidi on 18/10/2023.
-//  Copyright © 2023 The App Brewery. All rights reserved.
+//  Created by Omar Assidi on 01/12/2024.
+//  Copyright © 2024 The App Brewery. All rights reserved.
 //
 
-import Foundation
-
 struct BillBrain {
-    var bill: Bill
+    private var bill: Bill = Bill()
     
-    mutating func setTip(tip: Tip) {
+    mutating func setTip(_ tip: Tip) {
         bill.tip = tip
     }
     
-    mutating func setSplit(split: Int) {
+    mutating func setSplit(_ split: Int) {
         bill.split = split
     }
     
-    mutating func setBill(bill: Float) {
-        self.bill.bill = bill
+    mutating func setTotal(_ total: Double) {
+        bill.total = total
     }
     
-    mutating func calculateTotalBill() {
-        let billValue = self.bill.bill
-        self.bill.totalBill = (billValue + (billValue * bill.tip.getValue()))/Float(bill.split)
+    mutating func calculateTotalPerPerson() {
+        let total = bill.total + (bill.total * bill.tip.getTipValue())
+        let totalPerPerson = total / Double(bill.split)
+        bill.totalPerPerson = totalPerPerson
     }
     
+    func getSplit() -> Int {
+        return bill.split
+    }
+    
+    func getTip() -> Tip {
+        return bill.tip
+    }
+    
+    func getTotalPerPerson() -> Double {
+        return bill.totalPerPerson
+    }
 }

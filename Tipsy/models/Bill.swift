@@ -2,32 +2,28 @@
 //  Bill.swift
 //  Tipsy
 //
-//  Created by OmarAssidi on 18/10/2023.
-//  Copyright © 2023 The App Brewery. All rights reserved.
+//  Created by Omar Assidi on 01/12/2024.
+//  Copyright © 2024 The App Brewery. All rights reserved.
 //
 
-import Foundation
+struct Bill {
+    var total: Double = 0.0
+    var tip: Tip = .zero
+    var split: Int = 1
+    var totalPerPerson: Double = 0.0
+    
+}
+
 enum Tip: String {
     case zero = "0%"
-    case ten =  "10%"
+    case ten = "10%"
     case twenty = "20%"
     
-    func getValue() -> Float {
-        let value: Float
+    func getTipValue() -> Double {
         switch self {
-        case .zero:
-            value = 0.0
-        case .ten:
-            value = 0.1
-        case .twenty:
-            value = 0.2
+        case .zero: return 0.0
+        case .ten: return 0.1
+        case .twenty: return 0.2
         }
-        return value
     }
-}
-struct Bill {
-    var totalBill: Float
-    var bill: Float
-    var tip: Tip
-    var split: Int
 }
